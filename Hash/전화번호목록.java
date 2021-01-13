@@ -12,6 +12,8 @@ public class 전화번호목록 {
 					break;
 				}
 			}
+			if(answer == false)
+				break;
 		}
 		return answer;
 	}
