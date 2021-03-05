@@ -1,14 +1,23 @@
 package Heap;
 
 import java.util.PriorityQueue;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class 디스크컨트롤러 {
 	public int solution(int[][] jobs) {
 		int answer = 0;
-		int time = 0;
-		int check = 0;
-		while(true){
-
+        int time = 0;
+        int check = 0;
+        
+        Arrays.sort(jobs, new Comparator<int[]>() {
+				@Override
+				public int compare(int[] o1, int[] o2) {
+					return o1[0]-o2[0];
+				}
+			});
+        
+        while(true){
 			if(check == jobs.length)   // 종료 조건
 			break;
 
