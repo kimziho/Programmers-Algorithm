@@ -2,29 +2,35 @@ package Greedy;
 
 public class 체육복 {
 	public int solution(int n, int[] lost, int[] reserve) {
-		int answer = n;
-		for(int i = 0 ; i < lost.length ; i++){ // 여분있고 도난
-			for(int j = 0 ; j < reserve.length; j++){
-				if(lost[i] == reserve[j]){
-					lost[i] = -1;
-					reserve[j] = n+n;
-				}
-			}
-		}
-		for(int i = 0 ; i < lost.length ; i++){
-			int check = 0 ;
-			for(int j = 0 ; j < reserve.length ; j++){
-
-				if(lost[i]+1 == reserve[j] || lost[i]-1 == reserve[j]){ // 빌릴수 있음
-					check++;
-					reserve[j] = n+n;
-					break;
-				}
-			}
-			if(check == 0 && lost[i] != -1 ){   // 못빌림
-				answer--;
-			}
-		}
-		return answer;
-	}
+        int answer = n-lost.length;
+        
+        for(int i = 0 ; i < lost.length ; i++){ // 여벌과 도난이 중복되는 학생
+            int lost_num = lost[i];
+            for(int j = 0 ; j < reserve.length ; j++){
+                int reserve_num = reserve[j];
+                if(lost_num == reserve_num){
+                    answer++;
+                    lost[i] = -1;
+                    reserve[j] = -1;
+                    break;
+                }
+            }
+        }
+        for(int i = 0 ; i < lost.length ; i++){ // 도난당해 여벌을 빌려야할 학생
+            int lost_num = lost[i];
+            if(lost_num == -1)
+                continue;
+            for(int j=0 ; j < reserve.length ; j++){
+                int reserve_num = reserve[j];
+                if(reserve_num == -1)
+                    continue;
+                if(lost_num + 1 == reserve_num || lost_num - 1 == reserve_num){
+                        answer++;
+                        reserve[j] = -1;
+                        break;
+                }
+            }
+        }
+        return answer;
+    }
 }
