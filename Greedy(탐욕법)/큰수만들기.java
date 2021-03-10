@@ -11,6 +11,12 @@ public class 큰수만들기 {
 		int start_idx = 0;
 		int max_idx = 0;
 		while(k > 0) {
+			if(k == temp.length - start_idx) {
+				for(int i = max_idx+1 ; i < temp.length ; i++) {
+					temp[i] = -1;
+					k--;
+				}
+			}
 			max_idx= maxnum(temp, k, start_idx);
 			if(start_idx == max_idx) {
 				start_idx++;
@@ -34,6 +40,8 @@ public class 큰수만들기 {
 		int max = -1;
 		int max_idx = -1;
 		for(int i = 0 ; i < k+1 ; i++){ // 앞자리수 정하기
+			if(max == 9)
+				break;
 			if(temp[i+start_idx] > max){
 				max = temp[i+start_idx];
 				max_idx = i+start_idx;
