@@ -3,6 +3,7 @@ package Greedy;
 import java.util.Arrays;
 import java.util.Comparator;
 
+//2차원 배열은 clone을 해도 깊은 복사가 되지않는다.
 public class 단속카메라 {
 	public int solution(int[][] routes) {
 		int answer = 0;
